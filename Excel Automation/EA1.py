@@ -17,7 +17,7 @@ sheet["B1"] = "Automation"
 # Build the path to save the file in the same folder as this script
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
-file_path = os.path.join(script_dir, "excel_automation.xlsx")
+file_path = os.path.join(script_dir, "EA1.xlsx")
 
 
 # Save the workbook
