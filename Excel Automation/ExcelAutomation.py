@@ -17,3 +17,11 @@ xl = Dispatch("Excel.Application")
 xl.Visible = True
 
 wb = xl.WorkBooks.Open(file_path)
+
+sheet1 = wb.Sheets(1)
+a1_cell = sheet1.Cells(1, 1)
+a1_cell.Value = "Update"
+
+wb.Save()
+wb.Close()
+xl.Quit()
