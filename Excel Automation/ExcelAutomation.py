@@ -12,3 +12,8 @@ script_dir = os.path.dirname(os.path.abspath(__file__))
 file_path = os.path.join(script_dir, "excel_automation.xlsx")
 
 workbook.save(filename=file_path)
+
+xl = Dispatch("Excel.Application")
+xl.Visible = True
+
+wb = xl.WorkBooks.Open(file_path)
