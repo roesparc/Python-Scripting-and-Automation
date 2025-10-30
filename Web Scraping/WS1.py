@@ -24,8 +24,8 @@ for url in urls:
 
     # You can pick a specific table by index or filter by columns
     for table in tables:
-        # Example: only keep tables with a 'Team' column
-        if "Team" in table.columns:
+        # Example: only keep tables with a 'Season' column
+        if "Season" in table.columns:
             all_data.append(table)
 
 # Combine all tables into one DataFrame
@@ -36,5 +36,5 @@ else:
 
 # Save combined data
 script_dir = os.path.dirname(os.path.abspath(__file__))
-file_path = os.path.join(script_dir, "Combined_WS.csv")
+file_path = os.path.join(script_dir, "WS1.csv")
 combined_df.to_csv(file_path, index=False)
