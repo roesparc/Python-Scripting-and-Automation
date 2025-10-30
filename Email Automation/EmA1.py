@@ -20,7 +20,9 @@ attachments = [
 
 # Wrap in a try-except block to handle potential errors such as invalid email addresses or password
 try:
-    yag.send(to=to, subject=subject, contents=body)
+    yag.send(
+        to=to, cc=cc, bcc=bcc, subject=subject, contents=body, attachments=attachments
+    )
     print("Email sent successfully!")
-except:
-    print("Failed to send email.")
+except Exception as e:
+    print(f"Failed to send email: {e}")
