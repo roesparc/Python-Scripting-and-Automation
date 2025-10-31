@@ -1,5 +1,6 @@
 from fpdf import FPDF
 import os
+from datetime import datetime
 
 # Sample data (could come from a database, CSV, or Excel)
 report_data = [
@@ -12,6 +13,9 @@ report_data = [
 script_dir = os.path.dirname(os.path.abspath(__file__))
 pdf_output = os.path.join(script_dir, "PDFA2.pdf")
 
+# Get today's date dynamically
+today = datetime.today().strftime("%B %d, %Y")
+
 # Create PDF
 pdf = FPDF()
 pdf.add_page()
@@ -23,7 +27,13 @@ pdf.cell(0, 20, text="Invoice", new_x="LMARGIN", new_y="NEXT", align="C")
 # Subtitle / info
 pdf.set_font("helvetica", size=12)
 pdf.cell(0, 10, text="Customer: John Doe", new_x="LMARGIN", new_y="NEXT")
-pdf.cell(0, 10, text="Date: 31-Oct-2025", new_x="LMARGIN", new_y="NEXT")
+pdf.cell(
+    0,
+    10,
+    text=f"Date: {today}",
+    new_x="LMARGIN",
+    new_y="NEXT",
+)
 
 # Table header
 pdf.set_font("helvetica", "B", 12)
