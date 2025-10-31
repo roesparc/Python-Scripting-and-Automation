@@ -9,6 +9,13 @@ pdf_output = os.path.join(script_dir, "PDFA2.pdf")
 # Create a PDF
 pdf = FPDF()
 pdf.add_page()
-pdf.set_font("helvetica", size=12)
+
+pdf.set_font("helvetica", size=24)
 pdf.cell(200, 20, text="Hello World!", new_x="LMARGIN", new_y="NEXT", align="C")
+
+pdf.set_font(size=12)
+pdf.cell(
+    text="This is the main body of the PDF.",
+)
+
 pdf.output(pdf_output)
