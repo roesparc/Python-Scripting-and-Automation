@@ -9,4 +9,5 @@ pdf_file = os.path.join(script_dir, "PDFA1.pdf")
 # Open the PDF in read-binary mode
 with open(pdf_file, "rb") as file:
     reader = PyPDF2.PdfReader(file)
-    print(len(reader.pages))
+    active_page = reader._get_page(0)
+    print(active_page.extract_text())
