@@ -1,24 +1,37 @@
 import psutil
 from plyer import notification
-import time
 
-# Create our user input variable
-frequency = int(input("Enter the frequency (in seconds) for system notifications: "))
+cpu_threshold = 50
+mem_threshold = 50
+
+cpu_alert_active = False
+mem_alert_active = False
 
 while True:
-    # Get system info about CPU and RAM percents
     cpu_percent = psutil.cpu_percent(interval=1)
     memory = psutil.virtual_memory()
     memory_percent = memory.percent
 
-    # Create notification message
-    message = f"CPU Usage: {cpu_percent}%\nMemory Usage: {memory_percent}%"
+    # CPU alert logic
+    if cpu_percent > cpu_threshold and not cpu_alert_active:
+        notification.notify(
+            title="⚠️ CPU Warning",
+            message=f"CPU usage above {cpu_threshold}%, current: {cpu_percent}%",
+            timeout=5,
+        )
 
-    # Send notification
-    notification.notify(
-        title="System Usage Update",
-        message=message,
-        timeout=5,  # notification stays for 5 seconds
-    )
+        cpu_alert_active = True
+    elif cpu_percent <= cpu_threshold:
+        cpu_alert_active = False
 
-    time.sleep(frequency)
+    # Memory alert logic
+    if memory_percent > mem_threshold and not mem_alert_active:
+        notification.notify(
+            title="⚠️ Memory Warning",
+            message=f"Memory usage above {mem_threshold}%, current: {memory_percent}%",
+            timeout=5,
+        )
+
+        mem_alert_active = True
+    elif memory_percent <= mem_threshold:
+        mem_alert_active = False
